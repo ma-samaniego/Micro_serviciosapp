@@ -1,0 +1,42 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ConexionApplication",
+            "request": "launch",
+            "mainClass": "com.example.conexion.ConexionApplication",
+            "projectName": "conexion"
+        },
+        {
+            "type": "java",
+            "name": "ComentariosApplication",
+            "request": "launch",
+            "mainClass": "com.example.comentarios.ComentariosApplication",
+            "projectName": "comentarios"
+        },
+        {
+            "type": "java",
+            "name": "PublicacionesApplication",
+            "request": "launch",
+            "mainClass": "com.example.demo.PublicacionesApplication",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "IniciosecionApplication",
+            "request": "launch",
+            "mainClass": "Iniciosecion.Iniciosecion.IniciosecionApplication",
+            "projectName": "Iniciosecion"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-NotificacionesApplication<notificaciones>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.notificaciones.NotificacionesApplication",
+            "projectName": "notificaciones",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+  "nombre_usuario": "cadex",
+  "contrasena": "123456",
+  "numero_telefono": "987654321",
+  "correo": "cadex@example.com1",
+  "estado": "INACTIVO",
+  "rol": {
+    "rol_id": 2
+  }
+}
+{
+  "userid": 1,
+  "category": "Tecnología",
+  "imageUri": "adadad",
+  "title": "Nuevo avance en IA",
+  "description": "Descripción detallada de la publicación sobre inteligencia artificial.",
+  "authorname": "Juan Pérez",
+  "createDt": "2025-11-15T12:30:00",
+  "status": "ACTIVO",
+  "like": 0
+}
+
+{
+  "nombreUsuario": "juanperez",
+  "contrasena": "miPassword123"
+}
