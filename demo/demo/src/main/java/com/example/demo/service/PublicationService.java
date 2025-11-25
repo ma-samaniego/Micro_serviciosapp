@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Map;
+import java.time.LocalDateTime; // Import necesario para la fecha
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,23 @@ public class PublicationService {
     private UsuarioClient usuarioClient;
 
     public PublicationModel crearPublicacion(PublicationModel crearPubli) {
+        // 1. Validar que el usuario exista
         Map<String, Object> usuarioData = usuarioClient.getUsuarioById(crearPubli.getUserid());
         if (usuarioData == null) {
             throw new RuntimeException("Usuario no encontrado");
         }
-        return publicationRepository.save(crearPubli);
 
+        // 2. Asignar fecha automáticamente si no viene (CORRECCIÓN)
+        if (crearPubli.getCreateDt() == null || crearPubli.getCreateDt().isBlank()) {
+            crearPubli.setCreateDt(LocalDateTime.now().toString());
+        }
+
+        // 3. Asignar estado por defecto si no viene
+        if (crearPubli.getStatus() == null) {
+            crearPubli.setStatus("ACTIVE");
+        }
+
+        return publicationRepository.save(crearPubli);
     }
 
     public List<PublicationModel> obtenerTodasPubli() {
@@ -40,17 +52,12 @@ public class PublicationService {
         PublicationModel publi = publicationRepository.findById(publicationId)
                 .orElseThrow(() -> new RuntimeException("Publicación no encontrada"));
 
-        // 🟢 CAMBIO: Borramos toda la lógica que verificaba al usuario dueño.
-        // Simplemente la borramos, confiando en que si llegamos aquí es porque
-        // el Admin dio la orden desde la App.
-        
         // 2. Eliminar publicación directamente
         publicationRepository.deleteById(publicationId);
     }
 
     public PublicationModel buscarPublicacionPorId(Long publicationId) {
-        return publicationRepository.findById(publicationId).orElseThrow(() -> new RuntimeException("No encontrado"));
-
+        return publicationRepository.findById(publicationId)
+                .orElseThrow(() -> new RuntimeException("No encontrado"));
     }
-
 }

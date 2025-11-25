@@ -1,36 +1,51 @@
 server:
-  port: 8090  # IMPORTANTE: El puerto al que apunta tu App Android
+  port: 8080
 
 spring:
   application:
     name: api-gateway
   cloud:
     gateway:
+      # Configuración Global de CORS para permitir peticiones desde el Frontend (React)
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"  # Permite cualquier origen. En producción usa la URL real (ej. http://localhost:3000)
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+
       routes:
         # --- MICROSERVICIO 1: INICIO DE SESIÓN Y USUARIOS (Puerto 8081) ---
         - id: users-service
           uri: http://localhost:8081
           predicates:
-            # Tu Android llama a: /api/v1/auth/login, /api/v1/users, etc.
             - Path=/api/v1/**
             
         # --- MICROSERVICIO 2: PUBLICACIONES (Puerto 8082) ---
         - id: publicaciones-service
           uri: http://localhost:8082
           predicates:
-            # Tu Android llama a: /api/publicaciones/**
             - Path=/api/publicaciones/**
 
         # --- MICROSERVICIO 3: COMENTARIOS (Puerto 8083) ---
         - id: comentarios-service
           uri: http://localhost:8083
           predicates:
-            # Tu Android llama a: /api/comentarios/**
             - Path=/api/comentarios/**
 
         # --- MICROSERVICIO 4: NOTIFICACIONES (Puerto 8084) ---
         - id: notificaciones-service
           uri: http://localhost:8084
           predicates:
-            # Tu Android llama a: /api/notificaciones/**
             - Path=/api/notificaciones/**
+
+        # --- MICROSERVICIO 5: DONACIONES (Puerto 8085) ---
+        - id: donaciones-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/donaciones/**

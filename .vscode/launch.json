@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "DonacionesApplication",
+            "request": "launch",
+            "mainClass": "com.example.donaciones.DonacionesApplication",
+            "projectName": "donaciones"
+        },
+        {
+            "type": "java",
             "name": "ConexionApplication",
             "request": "launch",
             "mainClass": "com.example.conexion.ConexionApplication",

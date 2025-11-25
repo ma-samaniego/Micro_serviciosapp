@@ -27,7 +27,7 @@ public class PublicationModel {
     @Column(nullable = false)
     private String category;
 
-    @Column(nullable = false)
+    @Column(nullable = true, length = 50000)
     private String imageUri;
 
     @Column(nullable = false)
