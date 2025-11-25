@@ -2,7 +2,6 @@ package com.example.donaciones.service;
 
 import com.example.donaciones.model.DonacionModel;
 import com.example.donaciones.repository.DonacionRepository;
-import com.example.donaciones.webClient.PublicacionClient;
 import com.example.donaciones.webClient.UsuarioClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,7 @@ public class DonacionService {
     @Autowired
     private UsuarioClient usuarioClient;
 
-    @Autowired
-    private PublicacionClient publicacionClient;
+    // PublicacionClient ELIMINADO
 
     public DonacionModel crearDonacion(DonacionModel donacion) {
         // 1. Validar que el usuario donante existe
@@ -28,13 +26,9 @@ public class DonacionService {
             throw new RuntimeException("El usuario donante no existe");
         }
 
-        // 2. Validar que la publicación existe
-        Map<String, Object> publicacion = publicacionClient.getPublicacionById(donacion.getPublicationId());
-        if (publicacion == null) {
-            throw new RuntimeException("La publicación destino no existe");
-        }
+        // SE ELIMINÓ la validación de Publicación
 
-        // 3. Validar monto positivo
+        // 2. Validar monto positivo
         if (donacion.getMonto() <= 0) {
             throw new RuntimeException("El monto debe ser mayor a 0");
         }
@@ -44,9 +38,5 @@ public class DonacionService {
 
     public List<DonacionModel> obtenerPorUsuario(Long usuarioId) {
         return donacionRepository.findByUsuarioDonanteId(usuarioId);
-    }
-
-    public List<DonacionModel> obtenerPorPublicacion(Long publiId) {
-        return donacionRepository.findByPublicationId(publiId);
     }
 }

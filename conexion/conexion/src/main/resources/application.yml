@@ -1,5 +1,5 @@
 server:
-  port: 8080  # IMPORTANTE: El puerto al que apunta tu App Android
+  port: 8090  # IMPORTANTE: El puerto al que apunta tu App Android
 
 spring:
   application:

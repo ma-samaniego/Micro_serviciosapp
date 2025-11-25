@@ -17,7 +17,7 @@ public class DonacionController {
     @Autowired
     private DonacionService donacionService;
 
-    @Operation(summary = "Realizar una nueva donación")
+    @Operation(summary = "Realizar una nueva donación a la plataforma")
     @PostMapping
     public ResponseEntity<?> donar(@RequestBody DonacionModel donacion) {
         try {
@@ -32,11 +32,5 @@ public class DonacionController {
     @GetMapping("/usuario/{usuarioId}")
     public ResponseEntity<List<DonacionModel>> verDonacionesUsuario(@PathVariable Long usuarioId) {
         return ResponseEntity.ok(donacionService.obtenerPorUsuario(usuarioId));
-    }
-
-    @Operation(summary = "Ver donaciones recibidas en una publicación")
-    @GetMapping("/publicacion/{publicationId}")
-    public ResponseEntity<List<DonacionModel>> verDonacionesPublicacion(@PathVariable Long publicationId) {
-        return ResponseEntity.ok(donacionService.obtenerPorPublicacion(publicationId));
     }
 }

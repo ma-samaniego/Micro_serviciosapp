@@ -20,16 +20,13 @@ public class DonacionModel {
     private Long usuarioDonanteId; // Quién envía el dinero
 
     @Column(nullable = false)
-    private Long publicationId; // A qué publicación (y por ende, a qué autor)
-
-    @Column(nullable = false)
     private Double monto;
 
     @Column(nullable = false)
-    private String metodoPago; // Ejemplo: "TARJETA", "PAYPAL"
+    private String metodoPago;
 
     @Column(nullable = false)
-    private String mensaje; // Mensaje de apoyo opcional
+    private String mensaje;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

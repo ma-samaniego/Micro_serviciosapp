@@ -9,7 +9,4 @@ import java.util.List;
 public interface DonacionRepository extends JpaRepository<DonacionModel, Long> {
     // Ver donaciones hechas por un usuario
     List<DonacionModel> findByUsuarioDonanteId(Long usuarioDonanteId);
-    
-    // Ver donaciones recibidas en una publicación
-    List<DonacionModel> findByPublicationId(Long publicationId);
 }
